@@ -1,0 +1,28 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.8.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'br.unip.pim'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Data JPA (Repositories, Entities, Hibernate etc)
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Spring Security (mecanismos de autenticacao e autorizacao)
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Spring Web (REST)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Driver de Banco de Dados
+	runtimeOnly('mysql:mysql-connector-java')
+	
+	// Módulos de Testes
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
