@@ -19,6 +19,7 @@ Para executar o projeto, primeiro certifique-se de que as configuracões de Banc
 spring.datasource.url=jdbc:mysql://db4free.net:3306/pim_frotas?useSSL=false
 spring.datasource.username=falvojr
 spring.datasource.password=12345678
+
 # Configuracoes do JPA/Hibernate
 spring.jpa.show-sql = true
 spring.jpa.hibernate.ddl-auto=update
