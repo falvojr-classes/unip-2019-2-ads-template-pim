@@ -1,4 +1,4 @@
-package br.unip.pim;
+package br.unip.ads.pim;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

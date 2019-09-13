@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'br.unip.pim'
+group = 'br.unip.ads.pim'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -19,6 +19,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// Spring Web (REST)
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Lombook (gerara getters e setters automaticamente)
+	compileOnly 'org.projectlombok:lombok:1.18.10'
+	annotationProcessor 'org.projectlombok:lombok:1.18.10'
 	// Driver de Banco de Dados
 	runtimeOnly('mysql:mysql-connector-java')
 	
