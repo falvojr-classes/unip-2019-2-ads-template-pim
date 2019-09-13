@@ -15,8 +15,6 @@ repositories {
 dependencies {
 	// Spring Data JPA (Repositories, Entities, Hibernate etc)
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	// Spring Security (mecanismos de autenticacao e autorizacao)
-	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// Spring Web (REST)
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// Lombook (gerara getters e setters automaticamente)
