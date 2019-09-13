@@ -12,17 +12,17 @@ Após selecionar o projeto e concluir o processo de importacão, o Gradle irá b
 
 ## Execucão
 
-Para executar o projeto, primeiro certifique-se de que as configuracões de Banco de Dados e porta estão configuradas corretamente no *application.properties*:
+Para executar o projeto, primeiro certifique-se de que as configuracões de Banco de Dados e porta estão configuradas corretamente no *application.properties*, por exemplo:
 
 ```
 # Configuracoes de Banco de Dados
-spring.jpa.hibernate.ddl-auto=create
 spring.datasource.url=jdbc:mysql://db4free.net:3306/pim_frotas?useSSL=false
 spring.datasource.username=falvojr
 spring.datasource.password=12345678
-
-# Caso a porta 8080 esteja em uso, podemos alterar a porta padrao
-server.port = 8080
+# Configuracoes do JPA/Hibernate
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
 ```
 
 Com isso, basta executar a classe ***Application.java*** da seguinte forma: 
