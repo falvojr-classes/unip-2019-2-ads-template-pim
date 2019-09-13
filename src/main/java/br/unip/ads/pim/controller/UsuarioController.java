@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unip.ads.pim.model.Usuario;
-import br.unip.ads.pim.model.UsuarioRepository;
+import br.unip.ads.pim.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/usuarios")
