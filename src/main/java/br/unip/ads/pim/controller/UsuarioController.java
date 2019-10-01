@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,10 +38,14 @@ public class UsuarioController {
 		return usuarioBD.isPresent() ? ResponseEntity.ok(usuarioBD.get()) : ResponseEntity.noContent().build();
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> incluir(@RequestBody Usuario usuario) {
 		this.usuarioRepository.save(usuario);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(usuario.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
