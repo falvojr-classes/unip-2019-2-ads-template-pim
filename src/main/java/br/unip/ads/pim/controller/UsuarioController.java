@@ -1,7 +1,6 @@
 package br.unip.ads.pim.controller;
 
 import java.net.URI;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,60 +13,46 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unip.ads.pim.model.Usuario;
-import br.unip.ads.pim.repository.UsuarioRepository;
+import br.unip.ads.pim.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UsuarioController {
+public class UsuarioController extends BaseController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioService service;
 
 	@GetMapping
 	public ResponseEntity<Iterable<Usuario>> buscarTodos() {
-		Iterable<Usuario> usuarios = this.usuarioRepository.findAll();
+		Iterable<Usuario> usuarios = this.service.buscarTodos();
 		return ResponseEntity.ok(usuarios);
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> buscarUm(@PathVariable Long id) {
-		final Optional<Usuario> usuarioBD = this.usuarioRepository.findById(id);
-		return usuarioBD.isPresent() ? ResponseEntity.ok(usuarioBD.get()) : ResponseEntity.noContent().build();
+		final Usuario usuario = this.service.buscarUm(id);
+		return ResponseEntity.ok(usuario);
 	}
-	
+
 	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> incluir(@RequestBody Usuario usuario) {
-		this.usuarioRepository.save(usuario);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(usuario.getId())
-				.toUri();
+		this.service.inserir(usuario);
+		URI uri = super.criarUri(usuario);
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
-		Optional<Usuario> usuarioBD = this.usuarioRepository.findById(id);
-		if (usuarioBD.isPresent()) {
-			this.usuarioRepository.save(usuario);
-			return ResponseEntity.ok().build();
-		} else {
-			return ResponseEntity.noContent().build();
-		}
+		this.service.alterar(id, usuario);
+		return ResponseEntity.ok().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
-		Optional<Usuario> usuarioBD = this.usuarioRepository.findById(id);
-		if (usuarioBD.isPresent()) {
-			this.usuarioRepository.delete(usuarioBD.get());
-			return ResponseEntity.ok().build();
-		} else {
-			return ResponseEntity.noContent().build();
-		}
+		this.service.deletar(id);
+		return ResponseEntity.ok().build();
 	}
 }
