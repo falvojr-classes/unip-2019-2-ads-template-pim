@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'br.unip.ads.pim'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -20,7 +20,7 @@ dependencies {
 	// Driver de Banco de Dados
 	runtimeOnly('mysql:mysql-connector-java')
 	
-	// M�dulos de Testes
+	// Modulos de Testes
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
