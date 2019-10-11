@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.unip.ads.pim.config.SwaggerConfig;
 import br.unip.ads.pim.model.Usuario;
 import br.unip.ads.pim.service.UsuarioService;
+import io.swagger.annotations.Api;
 
+@Api(tags = SwaggerConfig.TAG_LOGIN)
 @RestController
 @RequestMapping("/login")
 public class LoginController extends BaseController {

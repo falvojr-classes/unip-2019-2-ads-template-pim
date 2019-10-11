@@ -1,4 +1,4 @@
-package br.unip.ads.pim.service;
+package br.unip.ads.pim.service.impl;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 
 import br.unip.ads.pim.model.Usuario;
 import br.unip.ads.pim.repository.UsuarioRepository;
+import br.unip.ads.pim.service.BaseCrudService;
+import br.unip.ads.pim.service.UsuarioService;
 import br.unip.ads.pim.util.NegocioException;
-import br.unip.ads.pim.util.SemResultadoException;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
@@ -48,45 +49,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 	}
 
+	
 	@Override
-	public Iterable<Usuario> buscarTodos() {
-		return repository.findAll();
+	public UsuarioRepository getRepository() {
+		return this.repository;
 	}
-
-	@Override
-	public Usuario buscarUm(Long id) {
-		Optional<Usuario> usuario = repository.findById(id);
-		if (usuario.isPresent()) {
-			return usuario.get();
-		} else {
-			throw new SemResultadoException();
-		}
-	}
-
-	@Override
-	public void inserir(Usuario usuario) {
-		//TODO Incluir regras de negocio para inclusao de Usuario
-		repository.save(usuario);
-	}
-
-	@Override
-	public void alterar(Long id, Usuario usuario) {
-		Optional<Usuario> usuarioBd = repository.findById(id);
-		if (usuarioBd.isPresent()) {
-			repository.save(usuario);
-		} else {
-			throw new SemResultadoException();
-		}
-	}
-
-	@Override
-	public void deletar(Long id) {
-		Optional<Usuario> usuario = repository.findById(id);
-		if (usuario.isPresent()) {
-			repository.delete(usuario.get());
-		} else {
-			throw new SemResultadoException();
-		}
-	}
-
 }

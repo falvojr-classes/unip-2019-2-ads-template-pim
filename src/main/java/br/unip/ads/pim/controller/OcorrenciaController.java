@@ -15,40 +15,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.unip.ads.pim.config.SwaggerConfig;
-import br.unip.ads.pim.model.Usuario;
-import br.unip.ads.pim.service.UsuarioService;
+import br.unip.ads.pim.model.Ocorrencia;
+import br.unip.ads.pim.service.OcorrenciaService;
 import io.swagger.annotations.Api;
 
-@Api(tags = SwaggerConfig.TAG_USUARIO)
+@Api(tags = SwaggerConfig.TAG_OCORRENCIA)
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController extends BaseController {
+@RequestMapping("/ocorrencias")
+public class OcorrenciaController extends BaseController {
 
 	@Autowired
-	private UsuarioService service;
+	private OcorrenciaService service;
 
 	@GetMapping
-	public ResponseEntity<Iterable<Usuario>> buscarTodos() {
-		Iterable<Usuario> entidades = this.service.buscarTodos();
+	public ResponseEntity<Iterable<Ocorrencia>> buscarTodos() {
+		Iterable<Ocorrencia> entidades = this.service.buscarTodos();
 		return ResponseEntity.ok(entidades);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> buscarUm(@PathVariable Long id) {
-		final Usuario entidade = this.service.buscarUm(id);
+	public ResponseEntity<Ocorrencia> buscarUm(@PathVariable Long id) {
+		final Ocorrencia entidade = this.service.buscarUm(id);
 		return ResponseEntity.ok(entidade);
 	}
 
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Void> incluir(@RequestBody Usuario entidade) {
+	public ResponseEntity<Void> incluir(@RequestBody Ocorrencia entidade) {
 		this.service.inserir(entidade);
 		URI uri = super.criarUri(entidade.getId());
 		return ResponseEntity.created(uri).build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> atualizar(@PathVariable Long id, @RequestBody Usuario entidade) {
+	public ResponseEntity<Void> atualizar(@PathVariable Long id, @RequestBody Ocorrencia entidade) {
 		this.service.alterar(id, entidade);
 		return ResponseEntity.ok().build();
 	}

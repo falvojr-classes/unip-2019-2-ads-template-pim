@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unip.ads.pim.model.Erro;
-import br.unip.ads.pim.model.Usuario;
 import br.unip.ads.pim.util.NegocioException;
 import br.unip.ads.pim.util.SemResultadoException;
 
@@ -38,10 +37,10 @@ public abstract class BaseController {
 				.body(erro);
 	}
 
-	protected URI criarUri(Usuario usuario) {
+	protected URI criarUri(Long id) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(usuario.getId())
+				.buildAndExpand(id)
 				.toUri();
 		return uri;
 	}
