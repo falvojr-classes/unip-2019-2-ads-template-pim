@@ -18,6 +18,11 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 
 	@Autowired
 	private UsuarioRepository repository;
+
+	@Override
+	public UsuarioRepository getRepository() {
+		return this.repository;
+	}
 	
 	@Override
 	public Usuario logar(Usuario credenciais) {
@@ -49,9 +54,9 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 		}
 	}
 
-	
 	@Override
-	public UsuarioRepository getRepository() {
-		return this.repository;
+	public void inserir(Usuario entidade) {
+		// TODO Implementar as regras de negocio de Usuario
+		super.inserir(entidade);
 	}
 }

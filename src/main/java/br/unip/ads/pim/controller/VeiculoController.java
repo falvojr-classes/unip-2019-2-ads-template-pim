@@ -19,6 +19,7 @@ import br.unip.ads.pim.model.Veiculo;
 import br.unip.ads.pim.service.VeiculoService;
 import io.swagger.annotations.Api;
 
+@CrossOrigin
 @Api(tags = SwaggerConfig.TAG_VEICULO)
 @RestController
 @RequestMapping("/veiculos")
@@ -39,7 +40,6 @@ public class VeiculoController extends BaseController {
 		return ResponseEntity.ok(entidade);
 	}
 
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> incluir(@RequestBody Veiculo entidade) {
 		this.service.inserir(entidade);

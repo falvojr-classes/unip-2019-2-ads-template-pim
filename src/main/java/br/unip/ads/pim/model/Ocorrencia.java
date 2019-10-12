@@ -33,7 +33,7 @@ public class Ocorrencia {
 	@Column
 	private LocalDateTime fim;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Veiculo veiculo;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
