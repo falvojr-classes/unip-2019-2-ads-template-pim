@@ -30,6 +30,9 @@ public class Veiculo {
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo tipo;
+	
+	@Column(nullable = false)
+	private boolean inativo;
 
 	public Long getId() {
 		return id;
@@ -77,6 +80,14 @@ public class Veiculo {
 
 	public void setTipo(TipoVeiculo tipo) {
 		this.tipo = tipo;
+	}
+
+	public boolean isInativo() {
+		return inativo;
+	}
+
+	public void setInativo(boolean inativo) {
+		this.inativo = inativo;
 	}
 
 }

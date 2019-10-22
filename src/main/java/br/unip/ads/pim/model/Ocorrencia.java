@@ -34,6 +34,8 @@ public class Ocorrencia {
 	private LocalDateTime fim;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	// https://stackoverflow.com/a/38495206/3072570
+    // @OnDelete(action = OnDeleteAction.CASCADE)
 	private Veiculo veiculo;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
