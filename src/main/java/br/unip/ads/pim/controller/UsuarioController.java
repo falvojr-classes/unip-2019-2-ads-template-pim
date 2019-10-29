@@ -19,6 +19,7 @@ import br.unip.ads.pim.model.Usuario;
 import br.unip.ads.pim.service.UsuarioService;
 import io.swagger.annotations.Api;
 
+@CrossOrigin
 @Api(tags = SwaggerConfig.TAG_USUARIO)
 @RestController
 @RequestMapping("/usuarios")
@@ -39,7 +40,6 @@ public class UsuarioController extends BaseController {
 		return ResponseEntity.ok(entidade);
 	}
 
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> incluir(@RequestBody Usuario entidade) {
 		this.service.inserir(entidade);

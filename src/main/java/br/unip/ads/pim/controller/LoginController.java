@@ -13,6 +13,7 @@ import br.unip.ads.pim.model.Usuario;
 import br.unip.ads.pim.service.UsuarioService;
 import io.swagger.annotations.Api;
 
+@CrossOrigin
 @Api(tags = SwaggerConfig.TAG_LOGIN)
 @RestController
 @RequestMapping("/login")
@@ -21,7 +22,6 @@ public class LoginController extends BaseController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Usuario> logar(@RequestBody Usuario credenciais) {
 		Usuario usuario = usuarioService.logar(credenciais);

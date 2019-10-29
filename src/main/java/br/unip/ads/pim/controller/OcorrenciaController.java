@@ -19,6 +19,7 @@ import br.unip.ads.pim.model.Ocorrencia;
 import br.unip.ads.pim.service.OcorrenciaService;
 import io.swagger.annotations.Api;
 
+@CrossOrigin
 @Api(tags = SwaggerConfig.TAG_OCORRENCIA)
 @RestController
 @RequestMapping("/ocorrencias")
@@ -39,7 +40,6 @@ public class OcorrenciaController extends BaseController {
 		return ResponseEntity.ok(entidade);
 	}
 
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Void> incluir(@RequestBody Ocorrencia entidade) {
 		this.service.inserir(entidade);
@@ -56,6 +56,12 @@ public class OcorrenciaController extends BaseController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
 		this.service.deletar(id);
+		return ResponseEntity.ok().build();
+	}
+
+	@PutMapping("/encerrar/{id}")
+	public ResponseEntity<Void> encerrar(@PathVariable Long id, @RequestBody Ocorrencia entidade) {
+		this.service.encerrar(id, entidade);
 		return ResponseEntity.ok().build();
 	}
 }
