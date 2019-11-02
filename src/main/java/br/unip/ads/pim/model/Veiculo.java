@@ -33,6 +33,9 @@ public class Veiculo {
 	
 	@Column(nullable = false)
 	private boolean inativo;
+	
+	@Column
+	private String imagem;
 
 	public Long getId() {
 		return id;
@@ -88,6 +91,14 @@ public class Veiculo {
 
 	public void setInativo(boolean inativo) {
 		this.inativo = inativo;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 }
