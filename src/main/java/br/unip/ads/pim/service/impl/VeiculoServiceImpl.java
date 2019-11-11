@@ -24,7 +24,7 @@ public class VeiculoServiceImpl extends BaseCrudService<Veiculo> implements Veic
 
 	@Override
 	public Iterable<Veiculo> buscarTodos() {
-		return this.getRepository().findActives();
+		return this.getRepository().buscarAtivos();
 	}
 	
 	@Override

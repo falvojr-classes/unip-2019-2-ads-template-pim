@@ -41,9 +41,9 @@ public class UsuarioServiceImpl extends BaseCrudService<Usuario> implements Usua
 		// Consulta as credenciais no banco de dados
 		Optional<Usuario> usuario;
 		if (!isEmpty(email)) {
-			usuario = repository.findByEmailAndSenha(email, senha);
+			usuario = repository.buscarPorEmailSenha(email, senha);
 		} else {
-			usuario = repository.findByCpfAndSenha(cpf, senha);
+			usuario = repository.buscarPorCpfSenha(cpf, senha);
 		}
 		
 		// Valida se as credenciais são validas

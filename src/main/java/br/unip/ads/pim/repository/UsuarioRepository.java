@@ -11,8 +11,9 @@ import br.unip.ads.pim.model.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
-	Optional<Usuario> findByEmailAndSenha(String email, String senha);
+	@Query("FROM Usuario u WHERE u.email = ?1 AND u.senha = ?2")
+	Optional<Usuario> buscarPorEmailSenha(String email, String senha);
 	
 	@Query("FROM Usuario u WHERE u.cpf = ?1 AND u.senha = ?2")
-	Optional<Usuario> findByCpfAndSenha(String cpf, String senha);
+	Optional<Usuario> buscarPorCpfSenha(String cpf, String senha);
 }
