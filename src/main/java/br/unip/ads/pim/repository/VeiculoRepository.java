@@ -7,10 +7,9 @@ import br.unip.ads.pim.model.Veiculo;
 
 public interface VeiculoRepository extends CrudRepository<Veiculo, Long> {
 
-	@Query("FROM Veiculo v WHERE v.inativo = false")
-	Iterable<Veiculo> buscarAtivos();
-
 	@Query("FROM Veiculo v WHERE v.inativo = false AND " + 
-				"(SELECT COUNT(o) FROM Ocorrencia o WHERE o.veiculo.id = v.id AND o.fim IS NULL) = 0")
-	Iterable<Veiculo> buscarAtivosSemOcorrenciasAbertas();
+				"(SELECT COUNT(o) FROM Ocorrencia o "
+				+ "WHERE o.veiculo.id = v.id "
+				+ "AND o.fim IS NULL) = 0")
+	Iterable<Veiculo> buscarDisponiveis();
 }

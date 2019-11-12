@@ -21,11 +21,6 @@ public class VeiculoServiceImpl extends BaseCrudService<Veiculo> implements Veic
 	public VeiculoRepository getRepository() {
 		return this.repository;
 	}
-
-	@Override
-	public Iterable<Veiculo> buscarTodos() {
-		return this.getRepository().buscarAtivos();
-	}
 	
 	@Override
 	public void deletar(Long id) {
@@ -35,6 +30,15 @@ public class VeiculoServiceImpl extends BaseCrudService<Veiculo> implements Veic
 			this.getRepository().save(entidade.get());
 		} else {
 			throw new SemResultadoException();
+		}
+	}
+
+	@Override
+	public Iterable<Veiculo> buscarTodos(Boolean ehCliente) {
+		if (ehCliente) {
+			return this.getRepository().buscarDisponiveis();
+		} else {
+			return super.buscarTodos();	
 		}
 	}
 }

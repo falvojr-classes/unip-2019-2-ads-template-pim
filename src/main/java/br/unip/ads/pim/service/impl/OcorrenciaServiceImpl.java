@@ -43,4 +43,15 @@ public class OcorrenciaServiceImpl extends BaseCrudService<Ocorrencia> implement
 			throw new SemResultadoException();
 		}
 	}
+
+	@Override
+	public Iterable<Ocorrencia> buscarTodos(Long idFuncionario, Long idVeiculo) {
+		if (idFuncionario != null) {
+			return this.getRepository().buscarPorIdUsuario(idFuncionario);
+		} else if (idVeiculo != null) {
+			return this.getRepository().buscarPorIdVeiculo(idVeiculo);
+		} else {
+			return super.buscarTodos();
+		}
+	}
 }

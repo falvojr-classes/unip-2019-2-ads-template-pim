@@ -6,4 +6,6 @@ public interface OcorrenciaService extends CrudService<Ocorrencia> {
 
 	void encerrar(Long id, Ocorrencia entidade);
 
+	Iterable<Ocorrencia> buscarTodos(Long idFuncionario, Long idVeiculo);
+
 }

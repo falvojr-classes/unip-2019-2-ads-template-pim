@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.unip.ads.pim.config.SwaggerConfig;
@@ -29,8 +30,9 @@ public class VeiculoController extends BaseController {
 	private VeiculoService service;
 
 	@GetMapping
-	public ResponseEntity<Iterable<Veiculo>> buscarTodos() {
-		Iterable<Veiculo> entidades = this.service.buscarTodos();
+	public ResponseEntity<Iterable<Veiculo>> buscarTodos(
+			@RequestParam(name = "ehCliente", required = false) boolean ehCliente) {
+		Iterable<Veiculo> entidades = this.service.buscarTodos(ehCliente);
 		return ResponseEntity.ok(entidades);
 	}
 
